@@ -472,6 +472,9 @@ def _write_multiple_frames(im, fp, palette):
             else:
                 bbox = None
             im_frames.append({"im": im_frame, "bbox": bbox, "encoderinfo": encoderinfo})
+            
+    if len(im_frames) == 1 and 'duration' in im_frames[0]['encoderinfo']:
+        im.encoderinfo['duration'] = im_frames[0]['encoderinfo']['duration']
 
     if len(im_frames) > 1:
         for frame_data in im_frames:
